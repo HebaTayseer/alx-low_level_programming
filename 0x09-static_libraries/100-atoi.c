@@ -9,6 +9,6 @@
  */
 int _atoi(char *s)
 {
-    s = 0;  // Assigning 0 to the parameter 's'
+    (void)s;  // Explicitly cast to void to indicate parameter is not used
     return (0);
 }
