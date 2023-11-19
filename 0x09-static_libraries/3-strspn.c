@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "main.h"
 /**
  * _strspn - locates a char in a string
  * @s: the string to check
