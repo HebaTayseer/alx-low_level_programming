@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /**
  * count_words - Count the number of words in a string.
  * @str: The input string.
@@ -39,11 +40,11 @@ int count_words(char *str)
  */
 char **strtow(char *str)
 {
-    if (str == NULL || *str == '\0')
-        return NULL;
-
     int i, j, k, len, words;
     char **result;
+
+    if (str == NULL || *str == '\0')
+        return NULL;
 
     words = count_words(str);
 
