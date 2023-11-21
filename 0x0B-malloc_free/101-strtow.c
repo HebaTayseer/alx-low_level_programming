@@ -45,7 +45,7 @@ static char *alloc_and_copy(char *str, int len)
 
 	new_str = (char *)malloc((len + 1) * sizeof(char));
 	if (new_str == NULL)
-		return NULL;
+		return (NULL);
 
 	for (i = 0; i < len; i++)
 		new_str[i] = *str++;
@@ -67,7 +67,7 @@ char **strtow(char *str)
 	char **result;
 
 	if (str == NULL || *str == '\0')
-		return NULL;
+		return (NULL);
 
 	words = count_words(str);
 
