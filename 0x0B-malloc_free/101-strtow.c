@@ -11,24 +11,24 @@
  */
 static int count_words(char *str)
 {
-	int count = 0;
-	int in_word = 0;
+    int count = 0;
+    int in_word = 0;
 
-	while (*str)
-	{
-		if (*str == ' ')
-		{
-			in_word = 0;
-		}
-		else if (in_word == 0)
-		{
-			in_word = 1;
-			count++;
-		}
-		str++;
-	}
+    while (*str)
+    {
+        if (*str == ' ')
+        {
+            in_word = 0;
+        }
+        else if (in_word == 0)
+        {
+            in_word = 1;
+            count++;
+        }
+        str++;
+    }
 
-	return count;
+    return (count);
 }
 
 /**
@@ -40,19 +40,19 @@ static int count_words(char *str)
  */
 static char *alloc_and_copy(char *str, int len)
 {
-	char *new_str;
-	int i;
+    char *new_str;
+    int i;
 
-	new_str = (char *)malloc((len + 1) * sizeof(char));
-	if (new_str == NULL)
-		return NULL;
+    new_str = (char *)malloc((len + 1) * sizeof(char));
+    if (new_str == NULL)
+        return (NULL);
 
-	for (i = 0; i < len; i++)
-		new_str[i] = *str++;
+    for (i = 0; i < len; i++)
+        new_str[i] = *str++;
 
-	new_str[len] = '\0';
+    new_str[len] = '\0';
 
-	return new_str;
+    return (new_str);
 }
 
 /**
@@ -63,44 +63,45 @@ static char *alloc_and_copy(char *str, int len)
  */
 char **strtow(char *str)
 {
-	int words, i;
-	char **result;
+    int words, i;
+    char **result;
 
-	if (str == NULL || *str == '\0')
-		return NULL;
+    if (str == NULL || *str == '\0')
+        return (NULL);
 
-	words = count_words(str);
+    words = count_words(str);
 
-	if (words == 0)
-		return NULL;
+    if (words == 0)
+        return (NULL);
 
-	result = (char **)malloc((words + 1) * sizeof(char *));
-	if (result == NULL)
-		return NULL;
+    result = (char **)malloc((words + 1) * sizeof(char *));
+    if (result == NULL)
+        return (NULL);
 
-	for (i = 0; i < words; i++)
-	{
-		int len = 0;
+    for (i = 0; i < words; i++)
+    {
+        int len = 0;
 
-		while (*str == ' ')
-			str++;
+        while (*str == ' ')
+            str++;
 
-		while (str[len] != ' ' && str[len] != '\0')
-			len++;
+        while (str[len] != ' ' && str[len] != '\0')
+            len++;
 
-		result[i] = alloc_and_copy(str, len);
-		if (result[i] == NULL)
-		{
-			while (i > 0)
-				free(result[--i]);
-			free(result);
-			return NULL;
-		}
+        result[i] = alloc_and_copy(str, len);
+        if (result[i] == NULL)
+        {
+            while (i > 0)
+                free(result[--i]);
+            free(result);
+            return (NULL);
+        }
 
-		str += len;
-	}
+        str += len;
+    }
 
-	result[words] = NULL;
+    result[words] = NULL;
 
-	return result;
+    return (result);
 }
+
