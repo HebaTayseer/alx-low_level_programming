@@ -2,30 +2,83 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 /**
- * strtow - concatenates arguments.
- * @str: String to be splitted.
+ * count_words - Count the number of words in a string.
+ * @str: The input string.
  *
- * Return: a pointer to array of String.
+ * Return: The number of words.
+ */
+int count_words(char *str)
+{
+    int count = 0;
+    int in_word = 0;
+
+    while (*str)
+    {
+        if (*str == ' ')
+        {
+            in_word = 0;
+        }
+        else if (in_word == 0)
+        {
+            in_word = 1;
+            count++;
+        }
+        str++;
+    }
+
+    return count;
+}
+
+/**
+ * strtow - Splits a string into words.
+ * @str: The input string.
+ *
+ * Return: A pointer to an array of strings (words), or NULL if it fails.
  */
 char **strtow(char *str)
 {
-	char *array = NULL;
-	unsigned int i = 0, j = 0, k;
+    if (str == NULL || *str == '\0')
+        return NULL;
 
-	if (strncmp(str, "", 1) || str == NULL)
-		return (NULL);
-	array = malloc((i + j + 1) * sizeof(char));
-	if (array == NULL)
-		return (NULL);
-	for (k = 0; k < i; k++)
-		array[k] = str[k];
-	i = k;
-	for (k = 0; k < j; k++)
-	{
-		array[i] = str[k];
-		i++;
-	}
-	array[i] = '\0';
-	return (NULL);
+    int i, j, k, len, words;
+    char **result;
+
+    words = count_words(str);
+
+    if (words == 0)
+        return NULL;
+
+    result = malloc((words + 1) * sizeof(char *));
+    if (result == NULL)
+        return NULL;
+
+    for (i = 0; i < words; i++)
+    {
+        while (*str == ' ')
+            str++;
+
+        len = 0;
+        while (str[len] != ' ' && str[len] != '\0')
+            len++;
+
+        result[i] = malloc((len + 1) * sizeof(char));
+        if (result[i] == NULL)
+        {
+            for (j = 0; j < i; j++)
+                free(result[j]);
+            free(result);
+            return NULL;
+        }
+
+        for (k = 0; k < len; k++)
+            result[i][k] = *str++;
+
+        result[i][k] = '\0';
+    }
+
+    result[i] = NULL;
+
+    return result;
 }
