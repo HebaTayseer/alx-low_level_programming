@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "dog.h"
 
+void free_dog(dog_t *d);  // Add this line to declare free_dog function
+
 /**
  * main - check the code
  *
@@ -15,3 +17,4 @@ int main(void)
     free_dog(my_dog);
     return (0);
 }
+
