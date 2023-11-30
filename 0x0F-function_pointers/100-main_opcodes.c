@@ -3,32 +3,29 @@
 #include "function_pointers.h"
 
 /**
- * main - prints the opcodes of its own main function
+ * main - prints a name as is
  * @argc: number of arguments
- * @argv: array of arguments
+ * @argv: arguments vector
  *
- * Return: Always 0.
+ * Return: 0 on success, 1 on incorrect number of arguments, 2 on negative number
  */
 int main(int argc, char *argv[])
 {
-    int num_bytes;
+	if (argc != 2)
+	{
+		printf("Error\n");
+		exit(1);
+	}
 
-    if (argc != 2)
-    {
-        printf("Error\n");
-        exit(1);
-    }
+	if (atoi(argv[1]) < 0)
+	{
+		printf("Error\n");
+		exit(2);
+	}
 
-    num_bytes = atoi(argv[1]);
+	/* Placeholder for printing the name */
+	printf("Name: %s\n", argv[1]);
 
-    if (num_bytes < 0)
-    {
-        printf("Error\n");
-        exit(2);
-    }
-
-    print_opcodes(main, num_bytes);
-
-    return (0);
+	return (0);
 }
 
