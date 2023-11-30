@@ -7,35 +7,28 @@
  * @argc: number of arguments
  * @argv: array of arguments
  *
- * Return: 0 on success, 1 on incorrect number of arguments, 2 on negative number of bytes
+ * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-	if (argc != 2)
-	{
-		printf("Error\n");
-		exit(1);
-	}
+    int num_bytes;
 
-	int num_bytes = atoi(argv[1]);
+    if (argc != 2)
+    {
+        printf("Error\n");
+        exit(1);
+    }
 
-	if (num_bytes < 0)
-	{
-		printf("Error\n");
-		exit(2);
-	}
+    num_bytes = atoi(argv[1]);
 
-	char *main_ptr = (char *)main;
+    if (num_bytes < 0)
+    {
+        printf("Error\n");
+        exit(2);
+    }
 
-	for (int i = 0; i < num_bytes; i++)
-	{
-		printf("%02x", main_ptr[i] & 0xFF);
+    print_opcodes(main, num_bytes);
 
-		if (i < num_bytes - 1)
-			printf(" ");
-	}
-
-	printf("\n");
-	exit(0);
+    return (0);
 }
 
