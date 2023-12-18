@@ -4,6 +4,10 @@
 #include <unistd.h>
 #include <elf.h>
 
+/**
+ * print_elf_header - Print information from the ELF header.
+ * @header: Pointer to the ELF header structure.
+ */
 void print_elf_header(Elf64_Ehdr *header) {
     printf("ELF Header:\n");
     printf("  Magic:   ");
@@ -43,6 +47,12 @@ void print_elf_header(Elf64_Ehdr *header) {
     printf("  Entry point address:               0x%lx\n", header->e_entry);
 }
 
+/**
+ * main - Entry point of the program.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line arguments.
+ * Return: 0 on success, 98 on error.
+ */
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
