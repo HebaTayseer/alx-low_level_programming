@@ -124,10 +124,11 @@ void printtype(char *head)
 {
 	int index;
 
-	if (head[5] == 1)
-		index = 16;
+	if (head[4] == 2)
+		index = 0x10;
 	else
-		index = 17;
+		index = 0x11;
+
 	printf("  %-35s", "Type:");
 	if (head[index] == 1)
 		printf("REL (Relocatable file)\n");
@@ -138,7 +139,7 @@ void printtype(char *head)
 	else if (head[index] == 4)
 		printf("CORE (Core file)\n");
 	else
-		printf("<unknown>: %02x%02x\n", head[16], head[17]);
+		printf("<unknown>: %02x%02x\n", head[0x10], head[0x11]);
 }
 
 /**
